@@ -170,7 +170,7 @@ const vectorTileLayerStyles = {
 
     if (properties.toll === 1) {
       color = '#B69A4C';
-      weight = zoom >= 12 ? 5 : zoom >= 8 ? 3 : 1.5;
+      weight = zoom >= 14 ? 6 : zoom >= 12 ? 5 : zoom >= 8 ? 3 : 1.5;
       dashArray = '4,2';
     } else if (properties.surface === 'unpaved' || properties.surface === 'dirt' || properties.surface === 'gravel') {
       color = '#A3998D';
@@ -178,23 +178,23 @@ const vectorTileLayerStyles = {
       dashArray = '2,2';
     } else if (properties.class === 'motorway' || properties.class === 'trunk') {
       color = '#FFCA28';
-      weight = zoom >= 12 ? 5 : zoom >= 8 ? 3 : 1.5;
+      weight = zoom >= 14 ? 6 : zoom >= 12 ? 5 : zoom >= 8 ? 3 : 1.5;
     } else if (properties.subclass === 'motorway_link' || properties.subclass === 'trunk_link') {
       color = '#FFCA28';
-      weight = zoom >= 12 ? 3.5 : zoom >= 8 ? 2 : 1;
+      weight = zoom >= 14 ? 4 : zoom >= 12 ? 3.5 : zoom >= 8 ? 2 : 1;
     } else if (properties.class === 'primary' || properties.class === 'secondary') {
       color = '#FFFFFF';
-      weight = zoom >= 12 ? 3.5 : zoom >= 8 ? 2 : 1;
+      weight = zoom >= 14 ? 4.5 : zoom >= 12 ? 3.5 : zoom >= 8 ? 2 : 1;
     } else if (properties.subclass === 'primary_link' || properties.subclass === 'secondary_link') {
       color = '#FFFFFF';
-      weight = zoom >= 12 ? 3 : zoom >= 8 ? 1.5 : 0.8;
+      weight = zoom >= 14 ? 3.5 : zoom >= 12 ? 3 : zoom >= 8 ? 1.5 : 0.8;
     } else if (properties.class === 'tertiary' || properties.subclass === 'tertiary') {
       color = '#ECEFF1';
       weight = zoom >= 14 ? 2.5 : zoom >= 12 ? 1.5 : 0.8;
-    } else if (properties.class === 'residential' || properties.class === 'living_street') {
-      color = '#ECEFF1';
-      weight = zoom >= 14 ? 2 : zoom >= 12 ? 1 : 0.5;
     } else if (properties.subclass === 'tertiary_link') {
+      color = '#ECEFF1';
+      weight = zoom >= 14 ? 2.5 : zoom >= 12 ? 1.5 : 0.8; // Added logic for zoom 13
+    } else if (properties.class === 'residential' || properties.class === 'living_street') {
       color = '#ECEFF1';
       weight = zoom >= 14 ? 2 : zoom >= 12 ? 1 : 0.5;
     } else if (properties.class === 'service' || properties.class === 'unclassified' || properties.subclass === 'service' || properties.subclass === 'unclassified') {
@@ -220,7 +220,7 @@ const vectorTileLayerStyles = {
       color = '#FF5722';
       weight = zoom >= 14 ? 2 : zoom >= 12 ? 1 : 0.5;
     }
-    
+
     // Adjust for tunnels or bridges
     if (properties.brunnel === 'tunnel') {
       opacity = 0.6;
@@ -228,7 +228,7 @@ const vectorTileLayerStyles = {
     } else if (properties.brunnel === 'bridge') {
       weight += 0.5;
     }
-    
+
     // Adjust for access restrictions
     if (properties.access === 'private' || properties.access === 'no') {
       opacity = 0.7;
