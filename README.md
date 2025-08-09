@@ -4,6 +4,7 @@
 This project is a lightweight MBTiles server built with Flask, designed to serve vector tiles from an MBTiles database and render them on a web-based map with custom styling. It leverages a thread pool for efficient tile request handling and includes a Leaflet-based frontend for map visualization. The server delivers `.pbf` (Protocol Buffer Format) tiles and static files, with zoom-dependent styles defined in `styles.js` for features like water, landcover, roads, and points of interest (POIs). Sample MBTiles files can be downloaded from `https://osm.dbtc.link/mbtiles/`.
 
 ![alt text](screenshot/1.PNG)
+![alt text](screenshot/2.PNG)
 
 ## Features
 - **Flask-based Server**: Serves vector tiles via `/tiles/<z>/<x>/<y>.pbf`.

@@ -478,7 +478,7 @@ const vectorTileLayerStyles = {
             color,
             weight,
             opacity,
-            dashArray
+            dashArray,
         };
     },
 
@@ -980,141 +980,75 @@ const vectorTileLayerStyles = {
         } else {
             console.log("Unhandled POI class:", poiClass);
             return {
-                'circle-radius': 0,
-                'circle-color': 'transparent',
-                'circle-opacity': 0,
-                'circle-stroke-color': 'transparent',
-                'circle-stroke-width': 0,
-                'circle-stroke-opacity': 0,
+                visible: false,
+                opacity: 0,
             };
         }
 
         return {
-            'circle-radius': radius,
-            'circle-color': color,
-            'circle-opacity': isVisible && radius > 0 ? 0.9 : 0,
-            'circle-stroke-color': isVisible && radius > 0 ? '#000000' : 'transparent',
-            'circle-stroke-width': isVisible && radius > 0 ? 1 : 0,
-            'circle-stroke-opacity': isVisible && radius > 0 ? 1 : 0,
+            visible: false,
+            opacity: 0,
         };
     },
 
     // Place labls (points: cities, towns, villagees)
     place: (properties, zoom) => {
-        if (zoom < 0 || zoom > 22) return {
-            visible: false,
-            opacity: 0
-        };
         return {
-            visible: zoom >= 2 && zoom <= 20,
-            opacity: 0
-        };
+            visible: false,
+            opacity: 0,
+        }; 
     },
 
     // House numbers (points)
     housenumber: (properties, zoom) => {
-        if (zoom < 0 || zoom > 22) return {
+        return {
             visible: false,
             opacity: 0,
-            radius: 0
-        };
-        return {
-            visible: zoom >= 14 && zoom <= 20,
-            opacity: 0,
-            radius: 0
-        };
+        };  
     },
 
     // Mountain peaks (points)
     mountain_peak: (properties, zoom) => {
-        if (zoom < 0 || zoom > 22) return {
+        return {
             visible: false,
             opacity: 0,
-            radius: 0
-        };
-        return {
-            visible: zoom >= 7 && zoom <= 20,
-            opacity: 0,
-            radius: 0
-        };
+        };  
     },
 
     // Aerodrome labels (points: airport labels)
     aerodrome_label: (properties, zoom) => {
-        if (zoom < 0 || zoom > 22) return {
+        return {
             visible: false,
             opacity: 0,
-            radius: 0
-        };
-        const isVisible = zoom >= 8 && zoom <= 14;
-        console.log("Aerodrome label:", properties.class);
-        return {
-            visible: isVisible,
-            opacity: 0,
-            radius: 0
-        };
+        };  
     },
 
     // Water name (points: labels for water bodies)
     water_name: (properties, zoom) => {
-        if (zoom < 0 || zoom > 22) return {
+        return {
             visible: false,
             opacity: 0,
-            radius: 0
-        };
-        return {
-            visible: zoom >= 7 && zoom <= 20,
-            opacity: 0,
-            radius: 0
-        };
+        };  
     },
 
     // Transportation names (points: road labels)
     transportation_name: (properties, zoom) => {
-      if (zoom < 0 || zoom > 22) return {
-          visible: false,
-          opacity: 0
-      };
-      if (typeof properties.name !== 'undefined') {
-          console.log(properties.name);
-          return {
-              visible: false,
-              opacity: 0,
-              radius: 0,
-              text: {
-                  field: properties.name,
-                  font: '14px Arial',
-                  fill: '#000000',
-                  stroke: '#ffffff',
-                  strokeWidth: 2,
-              }
-          };
-      }
-      return {};
-    },
-
-    // Aerodrome labels (points: airport names)
-    aerodrome_label: (properties, zoom) => {
-        if (zoom < 0 || zoom > 22) return {
+        return {
             visible: false,
             opacity: 0,
-            radius: 0
-        };
-        return {
-            visible: zoom >= 8 && zoom <= 20,
-            opacity: 0,
-            radius: 0
-        };
+        };  
     },
-
-    // Default style to prevent unstyled features from rendering with library's default (#3388FF)
-    return : {
-        opacity: 0,
-        weight: 0,
-        radius: 0,
-        fillOpacity: 0,
-        color: '#ffffff',
-        fillColor: '#ffffff'
+    
+    default: (properties) => {
+        console.log("Unhandled class or layer:", properties);
+        return {
+            opacity: 0,
+            weight: 0,
+            radius: 0,
+            fillOpacity: 0,
+            color: 'transparent',
+            fillColor: 'transparent'
+        };
     }
     
 };
